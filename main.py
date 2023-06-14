@@ -13,7 +13,7 @@ new_word = {}
 def right_click():
     word_list.remove(new_word)
     new_dataframe = pandas.DataFrame(word_list)
-    new_dataframe.to_csv("data/words_to_learn.csv", index=False)
+    new_dataframe.to_csv("words_to_learn.csv", index=False)
     button_click()
 
 
@@ -40,24 +40,24 @@ window.title("Flashy")
 window.config(padx=50, pady=50, bg=BACKGROUND_COLOR)
 
 canvas = Canvas(width=800, height=526, bg=BACKGROUND_COLOR, highlightthickness=0)
-card_front = PhotoImage(file="./images/card_front.png")
-card_back = PhotoImage(file="./images/card_back.png")
+card_front = PhotoImage(file="./card_front.png")
+card_back = PhotoImage(file="./card_back.png")
 canvas_image = canvas.create_image(400, 263)
 word = canvas.create_text(400, 263, text="", font=(FONT, 60, "bold"))
 title = canvas.create_text(400, 150, text="", font=(FONT, 40, "italic"))
 canvas.grid(column=0, row=0, columnspan=2)
 
-wrong_image = PhotoImage(file="./images/wrong.png")
+wrong_image = PhotoImage(file="./wrong.png")
 wrong_button = Button(image=wrong_image, highlightthickness=0, command=button_click)
 wrong_button.grid(column=0, row=1)
-right_image = PhotoImage(file="./images/right.png")
+right_image = PhotoImage(file="./right.png")
 right_button = Button(image=right_image, highlightthickness=0, command=right_click)
 right_button.grid(column=1, row=1)
 
 try:
-    word_data = pandas.read_csv("data/words_to_learn.csv")
+    word_data = pandas.read_csv("words_to_learn.csv")
 except FileNotFoundError:
-    word_data = pandas.read_csv("data/french_words.csv")
+    word_data = pandas.read_csv("french_words.csv")
 word_list = word_data.to_dict(orient="records")
 
 timer = window.after(3000, func=english_card)
