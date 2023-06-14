@@ -9,7 +9,6 @@ FONT = "Ariel"
 timer = None
 new_word = {}
 
-
 # ---------------------------- BUTTON FUNCTION ------------------------------- #
 def right_click():
     word_list.remove(new_word)
